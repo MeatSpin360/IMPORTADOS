@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colrolib Templates">
-    <meta name="author" content="Colrolib">
-    <meta name="keywords" content="Colrolib Templates">
+    <meta name="description" content="Front-End para manejo de contramuestras">
+    <meta name="author" content="Emilio Brescasin">
+
 
     <!-- Title Page-->
-    <title>Au Form Wizard</title>
+    <title>Control Contramuestras</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Vendor CSS-->
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -29,195 +32,167 @@
 
 <body>
     <div class="page-wrapper bg-color-1 p-t-165 p-b-100">
-        <div class="wrapper wrapper--w680">
+        <div class="wrapper wrapper--w730">
             <div class="card card-2">
                 <div class="card-body">
                     <ul class="tab-list">
                         <li class="tab-list__item active">
-                            <a class="tab-list__link" href="#tab1" data-toggle="tab">hotels</a>
+                            <a class="tab-list__link" href="#tab1" data-toggle="tab">BUSCADOR</a>
                         </li>
                         <li class="tab-list__item">
-                            <a class="tab-list__link" href="#tab2" data-toggle="tab">car</a>
+                            <a class="tab-list__link" href="#tab2" data-toggle="tab"> MUESTREO</a>
                         </li>
                         <li class="tab-list__item">
-                            <a class="tab-list__link" href="#tab3" data-toggle="tab">flight</a>
+                            <a class="tab-list__link" href="#tab3" data-toggle="tab">CARGA DE DATOS</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
                             <form method="POST" action="#">
                                 <div class="input-group">
-                                    <label class="label">where:</label>
-                                    <input class="input--style-1" type="text" name="address" placeholder="City, region or specific hotel" required="required">
+                                    <label class="label">#GCAS:</label>
+                                    <input class="input--style-1" type="number" name="gcas (adress)"
+                                        placeholder="GCAS del producto">
                                 </div>
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group">
-                                            <label class="label">check-in:</label>
-                                            <input class="input--style-1" type="text" name="check-in" placeholder="mm/dd/yyyy" id="input-start">
+                                            <label class="label">Lote:</label>
+                                            <input class="input--style-1" type="number" name="lote"
+                                                placeholder="1111222233" id="buscarlote">
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group">
-                                            <label class="label">check-out:</label>
-                                            <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-group">
-                                    <label class="label">travellers:</label>
-                                    <div class="input-group-icon" id="js-select-special">
-                                        <input class="input--style-1" type="text" name="traveller" value="1 Adult, 0 Children, 1 Room" disabled="disabled" id="info">
-                                        <i class="zmdi zmdi-chevron-down input-icon"></i>
-                                    </div>
-                                    <div class="dropdown-select">
-                                        <ul class="list-room">
-                                            <li class="list-room__item">
-                                                <span class="list-room__name">Room 1</span>
-                                                <ul class="list-person">
-                                                    <li class="list-person__item">
-                                                        <span class="name">Adults</span>
-                                                        <div class="quantity quantity1">
-                                                            <span class="minus">-</span>
-                                                            <input class="inputQty" type="number" min="0" value="1">
-                                                            <span class="plus">+</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="list-person__item">
-                                                        <span class="name">Children</span>
-                                                        <div class="quantity quantity2">
-                                                            <span class="minus">-</span>
-                                                            <input class="inputQty" type="number" min="0" value="0">
-                                                            <span class="plus">+</span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <div class="list-room__footer">
-                                            <a href="#" id="btn-add-room">Add room</a>
+                                            <label class="label">Fecha Muestreo:</label>
+                                            <input class="input--style-1" type="text" name="fecha-muestreo"
+                                                placeholder="dd/mm/yyyy" id="buscarfechamuestreo">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="p-t-5">
-                                    <label class="checkbox-container m-r-45">Add a flight
-                                        <input type="checkbox" checked="checked" name="add-flight">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="checkbox-container">Add a car
-                                        <input type="checkbox" name="add-car">
+                                    <label class="checkbox-container m-r-45">Buscar en toda la base de datos
+                                        <input type="checkbox" checked="checked" name="BuscarEnTodo">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <button class="btn-submit" type="submit">search</button>
+                                <div class="p-t-5">
+                                    <label class="checkbox-container m-r-45">Busqueda avanzada
+                                        <input type="checkbox" name="busquedaavanzada" id="checkbusquedaavanzada"
+                                            onchange="javascript:showContent()">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div id="MenuBusquedaOculto">
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Desde:</label>
+                                                <input class="input--style-1" type="text" name="check-in"
+                                                    placeholder="mm/dd/yyyy" id="input-start-2">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group">
+                                                <label class="label">Hasta:</label>
+                                                <input class="input--style-1" type="text" name="check-out"
+                                                    placeholder="mm/dd/yyyy" id="input-end-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn-submit" type="submit">BUSCAR</button>
                             </form>
                         </div>
                         <div class="tab-pane" id="tab2">
                             <form method="POST" action="#">
-                                <div class="input-group">
-                                    <label class="label">location:</label>
-                                    <input class="input--style-1" type="text" name="location" placeholder="Destination, hotel name" required="required">
+
+<!--                            <div class="input-group">
+                                    <label class="label">Tipo de Producto:</label>
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="TipoProducto">
+                                                <option>Medicinal</option>
+                                                <option>Alimentos</option>
+                                                <option>Beauty</option>
+                                                <option>Downy</option>
+                                                <option>Papers</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+-->
+                                <div class="planilla" id="ImprimirPlanillaMuestreo">
+                                    <h2>Muestreo Pendiente</h2>
+
+                                    <table id="planilla">
+                                        <thead>
+                                            <tr>
+                                                <th>FECHA</th>
+                                                <th>LOTE</th>
+                                                <th>#GCAS</th>
+                                                <th>DESCRIPCIÓN</th>
+                                                <th>OBSERVACIONES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Se generan 15 filas al cargar -->
+                                            <script>
+                                                for (let i = 0; i < 10; i++) {
+                                                    document.write(`
+                                                        <tr>
+                                                        <td><input type="text"></td>
+                                                        <td><input type="text"></td>
+                                                        <td><input type="text"></td>
+                                                        <td><input type="text"></td>
+                                                        <td><input type="text"></td>
+                                                        </tr>
+                                                    `);
+                                                };
+                                            </script>
+                                        </tbody>
+                                    </table>
+
+                                    <button class="btn" onclick="agregarFila()">Agregar Fila</button>
+                                    <button class="btn" onclick="borrarDatos()">Borrar Todo</button>
+
                                 </div>
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <label class="label">driver age:</label>
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="driver-age">
-                                                    <option>23</option>
-                                                    <option>24</option>
-                                                    <option selected="selected">25</option>
-                                                    <option>26</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <label class="label">car group:</label>
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="car-group">
-                                                    <option selected="selected">Group S-car</option>
-                                                    <option>Group 1</option>
-                                                    <option>Group 2</option>
-                                                    <option>Group 3</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <button class="btn-submit m-t-0" type="submit">Verificar</button>
+                                    <button class="btn-submit m-t-0" type="submit">Guardar</button>
+                                    <button class="btn-submit m-t-0" type="submit">Imprimir Planilla</button>
+                                    <button class="btn-submit m-t-0" type="submit">Continuar en Carga de Datos</button>
                                 </div>
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <label class="label">pick up:</label>
-                                            <input class="input--style-1 js-single-datepicker" type="text" name="pickup" placeholder="mm/dd/yyyy" data-drop="1">
-                                            <div class="dropdown-datepicker" id="dropdown-datepicker1"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <label class="label">time:</label>
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="time-pickup">
-                                                    <option selected="selected">10:00 AM</option>
-                                                    <option>5:00 AM</option>
-                                                    <option>6:00 AM</option>
-                                                    <option>7:00 AM</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <label class="label">drop off:</label>
-                                            <input class="input--style-1 js-single-datepicker" type="text" name="dropoff" placeholder="mm/dd/yyyy" data-drop="2">
-                                            <div class="dropdown-datepicker" id="dropdown-datepicker2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <label class="label">time:</label>
-                                            <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="time-dropoff">
-                                                    <option selected="selected">10:00 AM</option>
-                                                    <option>5:00 AM</option>
-                                                    <option>6:00 AM</option>
-                                                    <option>7:00 AM</option>
-                                                </select>
-                                                <div class="select-dropdown"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn-submit m-t-0" type="submit">search</button>
                             </form>
                         </div>
+
+
+
+
                         <div class="tab-pane" id="tab3">
                             <form method="POST" action="#">
                                 <div class="input-group">
                                     <label class="label">origin:</label>
-                                    <input class="input--style-1" type="text" name="origin" placeholder="City or airport" required="required">
+                                    <input class="input--style-1" type="text" name="origin"
+                                        placeholder="City or airport" required="required">
                                 </div>
                                 <div class="input-group">
                                     <label class="label">destination:</label>
-                                    <input class="input--style-1" type="text" name="destination" placeholder="City or airport" required="required">
+                                    <input class="input--style-1" type="text" name="destination"
+                                        placeholder="City or airport" required="required">
                                 </div>
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group">
                                             <label class="label">Departing:</label>
-                                            <input class="input--style-1" type="text" name="check-in" placeholder="mm/dd/yyyy" id="input-start-2">
+                                            <input class="input--style-1" type="text" name="check-in"
+                                                placeholder="mm/dd/yyyy" id="input-start-2">
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group">
                                             <label class="label">returning:</label>
-                                            <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end-2">
+                                            <input class="input--style-1" type="text" name="check-out"
+                                                placeholder="mm/dd/yyyy" id="input-end-2">
                                         </div>
                                     </div>
                                 </div>
