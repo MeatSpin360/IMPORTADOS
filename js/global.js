@@ -261,8 +261,11 @@ function showContent() {
     }
 }
 
-function agregarFila() {
-    const tabla = document.getElementById('planilla').getElementsByTagName('tbody')[0];
+/*  Agregar o quitar filas en planilla de Muestreo*/
+
+function agregarFilaMuestreo(event) {
+    if (event) event.preventDefault();
+    const tabla = document.querySelector("#TablaPlanillaMuestreo tbody");
     const nuevaFila = tabla.insertRow();
 
     for (let i = 0; i < 5; i++) {
@@ -273,8 +276,53 @@ function agregarFila() {
     }
 }
 
-// 📌 Manejar pegado múltiple desde Google Sheets
+function eliminarFilaMuestreo(event) {
+    if (event) event.preventDefault();
+    const tableBody = document.querySelector("#TablaPlanillaMuestreo tbody");
+    const filas = tableBody.children.length;
 
+    if (filas === 0) {
+        alert("No hay filas para eliminar.");
+        return;
+    }
+
+    if (confirm("¿Estás seguro de que querés eliminar la última fila?")) {
+        tableBody.removeChild(tableBody.lastElementChild);
+    }
+}
+
+/*  Agregar o quitar filas en planilla de Pendientes*/
+
+function agregarFilaPendientes() {
+    event.preventDefault();
+    const tabla = document.querySelector('#TablaPlanillaPendientes tbody');
+    const nuevaFila = tabla.insertRow();
+
+    for (let i = 0; i < 5; i++) {
+        const celda = nuevaFila.insertCell();
+        let input = document.createElement('input');
+        input.type = 'text';
+        celda.appendChild(input);
+    }
+}
+
+function eliminarFilaPendientes(event) {
+    if (event) event.preventDefault();
+    const tableBody = document.querySelector("#TablaPlanillaPendientes tbody");
+    const filas = tableBody.children.length;
+
+    if (filas === 0) {
+        alert("No hay filas para eliminar.");
+        return;
+    }
+
+    if (confirm("¿Estás seguro de que querés eliminar la última fila?")) {
+        tableBody.removeChild(tableBody.lastElementChild);
+    }
+}
+
+
+// 📌 Manejar pegado múltiple desde Google Sheets
 
 document.addEventListener('paste', function (e) {
     const activeElement = document.activeElement;
@@ -292,13 +340,11 @@ document.addEventListener('paste', function (e) {
         const startRowIndex = Array.from(tableBody.children).indexOf(currentRow);
         const startColIndex = Array.from(currentRow.children).indexOf(currentCell);
 
-        // Agregar filas si hacen falta
         const totalNeededRows = startRowIndex + data.length;
         while (tableBody.children.length < totalNeededRows) {
-            agregarFila();
+            agregarFilaMuestreo();
         }
 
-        // Pegar datos en la tabla
         data.forEach((rowData, rowIndex) => {
             const targetRow = tableBody.children[startRowIndex + rowIndex];
             rowData.forEach((cellData, colIndex) => {
@@ -308,17 +354,138 @@ document.addEventListener('paste', function (e) {
                 if (input) input.value = cellData;
             });
         });
-    }
+    };
 });
 
 // BORRAR DATOS DE PLANILLA
 
-function borrarDatos() {
-    const inputs = document.querySelectorAll('#planilla input');
-    inputs.forEach(input => input.value = '');
-}
+function borrarDatos(event) {
+    if (event) event.preventDefault();
+    if (confirm("¿Seguro de que querés borrar todos los datos de la planilla? Los cambios no se guardaran hasta que no se confirmen en el boton GUARDAR")) {
+        const inputs = document.querySelectorAll('#TablaPlanillaMuestreo input');
+        inputs.forEach(input => input.value = '');
+    };
+};
+
 
 // IMPRIMIR PLANILLA DE MUESTREO
 
-const ImprimirPlanillaMuestreo = document.querySelector("#ImprimirPlanillaMuestreo");
+function ImprimirPlanillaMuestreo(event) {
+    if (event) event.preventDefault();
 
+    let planillaOriginal = document.getElementById("PlanillaMuestreo");
+    let clonPlanilla = planillaOriginal.cloneNode(true);
+
+    // Reemplazar inputs por sus valores
+    let inputs = clonPlanilla.querySelectorAll('input');
+    inputs.forEach(input => {
+        let texto = document.createTextNode(input.value);
+        input.parentNode.replaceChild(texto, input);
+    });
+
+    // Crear ventana de impresión
+    let ventana = window.open('', '_blank', 'width=800,height=600');
+
+    ventana.document.write(`
+        <html>
+        <head>
+            <title>Planilla de Muestreo</title>
+            <style>
+                body {
+                    font-family: 'Roboto', sans-serif;
+                    background: white;
+                    padding: 20px;
+                    color: #333;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    background: white;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                }
+
+                th, td {
+                    border: 1px solid #999;
+                    padding: 10px;
+                    text-align: left;
+                    vertical-align: top;
+                }
+
+                th {
+                    background-color: #e8f0fe;
+                }
+
+                h2 {
+                    margin-bottom: 20px;
+                }
+
+                /* Estilos específicos para impresión */
+                @media print {
+                    body {
+                        background: white;
+                        padding: 0;
+                        color: #000;
+                    }
+
+                    h2, .btn {
+                        display: none !important;
+                    }
+
+                    table {
+                        box-shadow: none;
+                    }
+
+                    th, td {
+                        border: 1px solid #999;
+                        background: transparent;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            ${clonPlanilla.innerHTML}
+            <script>
+                window.onload = function() {
+                    window.print();
+                    window.close();
+                }
+            <\/script>
+        </body>
+        </html>
+    `);
+
+    ventana.document.close();
+}
+
+
+function ImprimirPlanillaPendientes() {
+    event.preventDefault(); // Evita enviar el formulario
+
+    let contenido = document.getElementById("planillaPendientes").innerHTML;
+
+    let ventana = window.open('', '_blank', 'width=800,height=600');
+
+    ventana.document.write(`
+        <html>
+        <head>
+            <title>Planilla de Muestreo</title>
+            <link rel="stylesheet" href="css/main.css"> 
+            <style>
+                button { display: none; } /* Opcional: oculta los botones para impresión */
+            </style>
+        </head>
+        <body>
+            ${contenido}
+            <script>
+                window.onload = function() {
+                    window.print();
+                    window.close();
+                }
+            <\/script>
+        </body>
+        </html>
+    `);
+
+    ventana.document.close();
+}

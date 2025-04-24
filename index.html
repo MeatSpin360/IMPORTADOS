@@ -32,7 +32,7 @@
 
 <body>
     <div class="page-wrapper bg-color-1 p-t-165 p-b-100">
-        <div class="wrapper wrapper--w730">
+        <div class="wrapper wrapper--w800">
             <div class="card card-2">
                 <div class="card-body">
                     <ul class="tab-list">
@@ -44,6 +44,9 @@
                         </li>
                         <li class="tab-list__item">
                             <a class="tab-list__link" href="#tab3" data-toggle="tab">CARGA DE DATOS</a>
+                        </li>
+                        <li class="tab-list__item">
+                            <a class="tab-list__link" href="#tab4" data-toggle="tab">PENDIENTES</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -107,7 +110,7 @@
                         <div class="tab-pane" id="tab2">
                             <form method="POST" action="#">
 
-<!--                            <div class="input-group">
+                                <!--                            <div class="input-group">
                                     <label class="label">Tipo de Producto:</label>
                                         <div class="rs-select2 js-select-simple select--no-search">
                                             <select name="TipoProducto">
@@ -121,10 +124,10 @@
                                         </div>
                                     </div>
 -->
-                                <div class="planilla" id="ImprimirPlanillaMuestreo">
-                                    <h2>Muestreo Pendiente</h2>
+                                <div class="planilla" id="PlanillaMuestreo">
+                                    <h2>Muestreo Diario</h2>
 
-                                    <table id="planilla">
+                                    <table id="TablaPlanillaMuestreo">
                                         <thead>
                                             <tr>
                                                 <th>FECHA</th>
@@ -135,38 +138,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Se generan 15 filas al cargar -->
-                                            <script>
-                                                for (let i = 0; i < 10; i++) {
-                                                    document.write(`
-                                                        <tr>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        <td><input type="text"></td>
-                                                        </tr>
-                                                    `);
-                                                };
-                                            </script>
+                                            <tr>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                            </tr>
                                         </tbody>
                                     </table>
 
-                                    <button class="btn" onclick="agregarFila()">Agregar Fila</button>
-                                    <button class="btn" onclick="borrarDatos()">Borrar Todo</button>
+                                    <button class="btn" type="button" onclick="agregarFilaMuestreo()">Agregar
+                                        Fila</button>
+                                    <button class="btn" type="button" onclick="eliminarFilaMuestreo()">Eliminar
+                                        Fila</button>
+                                    <button class="btn" type="button" onclick="borrarDatos()">Borrar Todo</button>
 
                                 </div>
                                 <div>
                                     <button class="btn-submit m-t-0" type="submit">Verificar</button>
                                     <button class="btn-submit m-t-0" type="submit">Guardar</button>
-                                    <button class="btn-submit m-t-0" type="submit">Imprimir Planilla</button>
+                                    <button class="btn-submit m-t-0" onclick="ImprimirPlanillaMuestreo()"
+                                        type="submit">Imprimir Planilla</button>
                                     <button class="btn-submit m-t-0" type="submit">Continuar en Carga de Datos</button>
                                 </div>
                             </form>
                         </div>
-
-
-
 
                         <div class="tab-pane" id="tab3">
                             <form method="POST" action="#">
@@ -213,6 +210,43 @@
                                 <button class="btn-submit" type="submit">search</button>
                             </form>
                         </div>
+
+                        <div class="tab-pane" id="tab4">
+                            <form method="POST" action="#">
+                                <div class="planilla" id="PlanillaPendientes">
+                                    <h2>Muestras Pendientes</h2>
+                                    <table id="TablaPlanillaPendientes">
+                                        <thead>
+                                            <tr>
+                                                <th>FECHA</th>
+                                                <th>LOTE</th>
+                                                <th>#GCAS</th>
+                                                <th>DESCRIPCIÓN</th>
+                                                <th>OBSERVACIONES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                                <td><input type="text"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button class="btn" onclick="agregarFilaPendientes()">Agregar Fila</button>
+                                    <button class="btn" onclick="eliminarFilaPendientes()">Eliminar Fila</button>
+                                </div>
+                                <div>
+                                    <button class="btn-submit m-t-0" type="submit">Verificar</button>
+                                    <button class="btn-submit m-t-0" type="submit">Guardar</button>
+                                    <button class="btn-submit m-t-0" onclick="ImprimirPlanillaPendientes()"
+                                        type="submit">Imprimir Planilla</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -232,7 +266,6 @@
     <!-- Main JS-->
     <script src="js/global.js"></script>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>
-<!-- end document-->
